@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://og8pidxy6330"]
+
+[ext_resource type="PackedScene" uid="uid://15xhywxk2d6f" path="res://Scenes/Laser/Laser.tscn" id="1_nqmk8"]
+[ext_resource type="Script" uid="uid://mlbmfxl6r0aq" path="res://Scenes/Pipes/Pipes.cs" id="1_u8oov"]
+[ext_resource type="PackedScene" uid="uid://bkojw6gyiojvm" path="res://Scenes/Pipe/Pipe.tscn" id="2_u8oov"]
+
+[node name="Pipes" type="Node2D" unique_id=761561384]
+script = ExtResource("1_u8oov")
+
+[node name="Laser" parent="." unique_id=73636742 instance=ExtResource("1_nqmk8")]
+
+[node name="Upper Pipe" parent="." unique_id=1406091205 instance=ExtResource("2_u8oov")]
+position = Vector2(0, -80)
+rotation = 3.1415927
+
+[node name="Lower Pipe" parent="." unique_id=1155395920 instance=ExtResource("2_u8oov")]
+position = Vector2(0, 80)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1230778473]
+position = Vector2(106, 0)
+
+[node name="LifeTimer" type="Timer" parent="." unique_id=1151749307]
+wait_time = 60.0
+autostart = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnScreenExit"]
+[connection signal="timeout" from="LifeTimer" to="." method="OnLifeTimeout"]
