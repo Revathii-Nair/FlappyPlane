@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://d4b4mxa5f4el8" path="res://Scenes/Plane/Plane.tscn" id="3_qikps"]
 [ext_resource type="PackedScene" uid="uid://bjciwre8vd0a7" path="res://Scenes/Barrier/Barrier.tscn" id="4_i1e5p"]
 [ext_resource type="PackedScene" uid="uid://og8pidxy6330" path="res://Scenes/Pipes/Pipes.tscn" id="5_ciybh"]
+[ext_resource type="PackedScene" uid="uid://b0j5h18a2guvw" path="res://Scenes/GameUI/GameUi.tscn" id="6_flgk0"]
 
-[node name="Game" type="Node" unique_id=322323213 node_paths=PackedStringArray("_spawnTimer", "_upperSpawnMarker", "_lowerSpawnMarker", "_pipesHolder")]
+[node name="Game" type="Node2D" unique_id=1792857166 node_paths=PackedStringArray("_upperSpawnMarker", "_lowerSpawnMarker", "_pipesHolder")]
 script = ExtResource("1_mv0hc")
 _pipeScene = ExtResource("5_ciybh")
-_spawnTimer = NodePath("SpawnTimer")
 _upperSpawnMarker = NodePath("UpperSpawnMarker")
 _lowerSpawnMarker = NodePath("LowerSpawnMarker")
 _pipesHolder = NodePath("PipesHolder")
@@ -34,5 +34,9 @@ position = Vector2(540, 550)
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1688884187]
 wait_time = 1.5
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=725500165]
+
+[node name="GameUI" parent="CanvasLayer" unique_id=1415195818 instance=ExtResource("6_flgk0")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="OnSpawnTimeout"]

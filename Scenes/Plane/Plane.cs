@@ -28,8 +28,9 @@ public partial class Plane : CharacterBody2D{
     }
 
     public void die(){
-        SetPhysicsProcess(false);
-        _sprite.Stop();
+        // SetPhysicsProcess(false);
+        // _sprite.Stop();
+        SignalHub.OnPlaneDied();
         GetTree().Paused = true;
     }
 }

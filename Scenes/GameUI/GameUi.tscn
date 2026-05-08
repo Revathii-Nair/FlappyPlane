@@ -1,9 +1,128 @@
 [gd_scene format=3 uid="uid://b0j5h18a2guvw"]
 
-[node name="GameUI" type="Control" unique_id=1415195818]
+[ext_resource type="Script" uid="uid://ciletp2gfh7be" path="res://Scenes/GameUI/GameUi.cs" id="1_556m7"]
+[ext_resource type="LabelSettings" uid="uid://bskxpp6flgh1y" path="res://Resources/PlayHeading35.tres" id="1_diq3n"]
+[ext_resource type="FontFile" uid="uid://cyr3aexk0bjca" path="res://Assets/fonts/LuckiestGuy-Regular.ttf" id="2_81r78"]
+[ext_resource type="AudioStream" uid="uid://bfgj1mawsa5rs" path="res://Assets/audio/game_over.wav" id="4_iq8cv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_556m7"]
+font = ExtResource("2_81r78")
+font_size = 20
+font_color = Color(0.2784314, 0.3137255, 1, 1)
+outline_size = 2
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.39607844)
+shadow_offset = Vector2(2.02, 2.09)
+
+[sub_resource type="LabelSettings" id="LabelSettings_81r78"]
+font = ExtResource("2_81r78")
+font_size = 15
+outline_size = 2
+outline_color = Color(0.48611712, 0.25282285, 0.71553063, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.39607844)
+shadow_offset = Vector2(2.02, 2.09)
+
+[sub_resource type="Animation" id="Animation_556m7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/StartAgain:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iq8cv"]
+resource_name = "flash"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/StartAgain:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwnss"]
+_data = {
+&"RESET": SubResource("Animation_556m7"),
+&"flash": SubResource("Animation_iq8cv")
+}
+
+[node name="GameUI" type="Control" unique_id=1415195818 node_paths=PackedStringArray("_gameOverLabel", "_startAgainLabel", "_startAgainTimer", "_gameOverMusic")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_556m7")
+_gameOverLabel = NodePath("MarginContainer/VBoxContainer/GameOver")
+_startAgainLabel = NodePath("MarginContainer/VBoxContainer/StartAgain")
+_startAgainTimer = NodePath("StartAgainLabelTimer")
+_gameOverMusic = NodePath("GameOverMusic")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1155812736]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="CurrentScore" type="Label" parent="MarginContainer" unique_id=2070511597]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "000"
+label_settings = SubResource("LabelSettings_556m7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1517487096]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="GameOver" type="Label" parent="MarginContainer/VBoxContainer" unique_id=608845239]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "GAME OVER"
+label_settings = ExtResource("1_diq3n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartAgain" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1162021195]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press Enter to start again"
+label_settings = SubResource("LabelSettings_81r78")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartAgainLabelTimer" type="Timer" parent="." unique_id=398179208]
+wait_time = 1.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=921432612]
+libraries/ = SubResource("AnimationLibrary_jwnss")
+autoplay = &"flash"
+
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="." unique_id=1337828356]
+stream = ExtResource("4_iq8cv")

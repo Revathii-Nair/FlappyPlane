@@ -5,21 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dl2ak57xuwpqt" path="res://Assets/background/clouds_2.png" id="2_aw1lf"]
 [ext_resource type="LabelSettings" uid="uid://b7objbdy3cwig" path="res://Resources/Heading84.tres" id="2_qtv3y"]
 [ext_resource type="Texture2D" uid="uid://dplk1imj6wb3y" path="res://Assets/background/rocks_2.png" id="2_w20t6"]
-[ext_resource type="FontFile" uid="uid://cyr3aexk0bjca" path="res://Assets/fonts/LuckiestGuy-Regular.ttf" id="3_i3fi7"]
 [ext_resource type="LabelSettings" uid="uid://bskxpp6flgh1y" path="res://Resources/PlayHeading35.tres" id="4_i3fi7"]
 [ext_resource type="AudioStream" uid="uid://37txyx054hl3" path="res://Assets/audio/BackgroundMusic.mp3" id="5_o8wgc"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_w20t6"]
-font = ExtResource("3_i3fi7")
-font_size = 45
-font_color = Color(0.93333334, 0.5254902, 0.8980392, 1)
-outline_size = 4
-outline_color = Color(0.48611712, 0.25282285, 0.71553063, 1)
-shadow_size = 5
-shadow_color = Color(0, 0, 0, 0.39607844)
-shadow_offset = Vector2(2.02, 2.09)
-
-[sub_resource type="Animation" id="Animation_o8wgc"]
+[sub_resource type="Animation" id="Animation_aw1lf"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -34,26 +23,27 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_w20t6"]
+[sub_resource type="Animation" id="Animation_5s61s"]
 resource_name = "flash"
 loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("MarginContainer/StartLabel:self_modulate")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.23333333, 0.53333336, 0.8, 1),
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_aw1lf"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7npjy"]
 _data = {
-&"RESET": SubResource("Animation_o8wgc"),
-&"flash": SubResource("Animation_w20t6")
+&"RESET": SubResource("Animation_aw1lf"),
+&"flash": SubResource("Animation_5s61s")
 }
 
 [node name="Main" type="Control" unique_id=864105645]
@@ -126,7 +116,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Press space to 
 start"
-label_settings = SubResource("LabelSettings_w20t6")
+label_settings = ExtResource("4_i3fi7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -150,8 +140,9 @@ vertical_alignment = 1
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="." unique_id=1153836104]
 stream = ExtResource("5_o8wgc")
+volume_db = -10.0
 autoplay = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1659998980]
-libraries/ = SubResource("AnimationLibrary_aw1lf")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=353335595]
+libraries/ = SubResource("AnimationLibrary_7npjy")
 autoplay = &"flash"
