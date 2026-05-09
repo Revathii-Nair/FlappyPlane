@@ -4,20 +4,26 @@ using System;
 public partial class Pipes : Node2D{
 	[Export] private Area2D _upperPipe;
 	[Export] private Area2D _lowerPipe;
+	[Export] private Area2D _laser;
+	[Export] private AudioStreamPlayer _scoreSound;
 	private const float MOVEMENT_SPEED = -120.0f;
-	private static float _totalScore = 0;
-	
+	private bool _laserActive = true;
+
+    public override void _Ready(){
+		_laser.BodyExited += OnLaserBodyExited;
+		SignalHub.Instance.PlaneDied += OnPlaneDied;
+	}
+
+    public override void _ExitTree(){
+		SignalHub.Instance.PlaneDied -= OnPlaneDied;
+	}
+
 	public override void _PhysicsProcess(double delta){
 		Position += new Vector2(MOVEMENT_SPEED * (float)delta,0);
 	}
 
-	public void OnScreenExit(){
-		QueueFree();
-	}
-
-	public void OnLifeTimeout(){
-		QueueFree();
-	}
+	public void OnScreenExit() {QueueFree();}
+	public void OnLifeTimeout() {QueueFree();}
 
 	public void OnPipeBodyEntered(Node2D body){
 		if(body is Plane){
@@ -27,12 +33,15 @@ public partial class Pipes : Node2D{
 
 	public void OnLaserBodyExited(Node2D body){
 		if(body is Plane){
-			AddScore();
-			GD.Print(_totalScore);
+			SignalHub.OnCurrentGameScoreChange();
+			_scoreSound.Play();
 		}
 	}
 
-	private void AddScore(){
-		_totalScore += 1;
+	public void OnPlaneDied(){
+		if(_laserActive){
+			_laser.BodyExited -= OnLaserBodyExited;
+			_laserActive = false;
+		}
 	}
 }

@@ -46,7 +46,7 @@ _data = {
 &"flash": SubResource("Animation_5s61s")
 }
 
-[node name="Main" type="Control" unique_id=864105645]
+[node name="Main" type="Control" unique_id=864105645 node_paths=PackedStringArray("_highScore")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,6 +56,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_5s61s")
+_highScore = NodePath("MarginContainer/HigheScore")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1529781748]
 layout_mode = 1

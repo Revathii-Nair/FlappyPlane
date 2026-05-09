@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://c1qph4eg5prpq"
 SignalHub="*uid://cinxp0v6qqjrj"
+ScoreManager="*uid://dpvjyjwtb2ae8"
 
 [display]
 

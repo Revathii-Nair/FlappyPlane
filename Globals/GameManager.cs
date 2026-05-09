@@ -5,7 +5,6 @@ public partial class GameManager : Node{
     public static GameManager Instance {get; private set;}
     public PackedScene _gameScene =  GD.Load<PackedScene>("res://Scenes/Game/game.tscn");
     public PackedScene _mainScene = GD.Load<PackedScene>("res://Scenes/Main/Main.tscn");
-    public static int _highscore=0;
 
     public override void _Ready(){
         Instance = this;

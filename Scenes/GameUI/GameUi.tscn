@@ -61,7 +61,7 @@ _data = {
 &"flash": SubResource("Animation_iq8cv")
 }
 
-[node name="GameUI" type="Control" unique_id=1415195818 node_paths=PackedStringArray("_gameOverLabel", "_startAgainLabel", "_startAgainTimer", "_gameOverMusic")]
+[node name="GameUI" type="Control" unique_id=1415195818 node_paths=PackedStringArray("_gameOverLabel", "_startAgainLabel", "_currentScoreLabel", "_startAgainTimer", "_gameOverMusic")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -72,6 +72,7 @@ grow_vertical = 2
 script = ExtResource("1_556m7")
 _gameOverLabel = NodePath("MarginContainer/VBoxContainer/GameOver")
 _startAgainLabel = NodePath("MarginContainer/VBoxContainer/StartAgain")
+_currentScoreLabel = NodePath("MarginContainer/CurrentScore")
 _startAgainTimer = NodePath("StartAgainLabelTimer")
 _gameOverMusic = NodePath("GameOverMusic")
 
