@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://d238hl1woepgd"]
 
 [ext_resource type="Script" uid="uid://bu4xm32ssn50l" path="res://Scenes/Main/Main.cs" id="1_5s61s"]
-[ext_resource type="Texture2D" uid="uid://cptarm86rekrc" path="res://Assets/background/sky.png" id="1_p8rbg"]
-[ext_resource type="Texture2D" uid="uid://dl2ak57xuwpqt" path="res://Assets/background/clouds_2.png" id="2_aw1lf"]
+[ext_resource type="PackedScene" uid="uid://ccovqkhj6h2dd" path="res://Scenes/GameBG/GameBg.tscn" id="2_5s61s"]
 [ext_resource type="LabelSettings" uid="uid://b7objbdy3cwig" path="res://Resources/Heading84.tres" id="2_qtv3y"]
-[ext_resource type="Texture2D" uid="uid://dplk1imj6wb3y" path="res://Assets/background/rocks_2.png" id="2_w20t6"]
 [ext_resource type="LabelSettings" uid="uid://bskxpp6flgh1y" path="res://Resources/PlayHeading35.tres" id="4_i3fi7"]
 [ext_resource type="AudioStream" uid="uid://37txyx054hl3" path="res://Assets/audio/BackgroundMusic.mp3" id="5_o8wgc"]
 
@@ -58,37 +56,9 @@ size_flags_vertical = 4
 script = ExtResource("1_5s61s")
 _highScore = NodePath("MarginContainer/HigheScore")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1529781748]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_p8rbg")
-expand_mode = 1
-
-[node name="Clouds" type="TextureRect" parent="." unique_id=1426126161]
-self_modulate = Color(1, 1, 1, 0.76862746)
-layout_mode = 0
-offset_left = -1181.0
-offset_top = -42.0
-offset_right = 739.0
-offset_bottom = 1038.0
-texture = ExtResource("2_aw1lf")
-expand_mode = 1
-metadata/_edit_lock_ = true
-
-[node name="Mountains" type="TextureRect" parent="." unique_id=1177397939]
-self_modulate = Color(1, 1, 1, 0.76862746)
-layout_mode = 0
-offset_left = -931.0
-offset_top = -198.0
-offset_right = 989.0
-offset_bottom = 882.0
-texture = ExtResource("2_w20t6")
-expand_mode = 1
-metadata/_edit_lock_ = true
+[node name="GameBG" parent="." unique_id=812301365 instance=ExtResource("2_5s61s")]
+position = Vector2(-629.54, 0)
+scale = Vector2(0.79, 0.79)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1183740216]
 layout_mode = 1

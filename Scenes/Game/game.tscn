@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmm815724mvc6"]
 
 [ext_resource type="Script" uid="uid://bf1u8wcilppcg" path="res://Scenes/Game/Game.cs" id="1_mv0hc"]
-[ext_resource type="Texture2D" uid="uid://dplk1imj6wb3y" path="res://Assets/background/rocks_2.png" id="2_qxfds"]
+[ext_resource type="PackedScene" uid="uid://ccovqkhj6h2dd" path="res://Scenes/GameBG/GameBg.tscn" id="3_flgk0"]
 [ext_resource type="PackedScene" uid="uid://d4b4mxa5f4el8" path="res://Scenes/Plane/Plane.tscn" id="3_qikps"]
 [ext_resource type="PackedScene" uid="uid://bjciwre8vd0a7" path="res://Scenes/Barrier/Barrier.tscn" id="4_i1e5p"]
 [ext_resource type="PackedScene" uid="uid://og8pidxy6330" path="res://Scenes/Pipes/Pipes.tscn" id="5_ciybh"]
@@ -14,9 +14,8 @@ _upperSpawnMarker = NodePath("UpperSpawnMarker")
 _lowerSpawnMarker = NodePath("LowerSpawnMarker")
 _pipesHolder = NodePath("PipesHolder")
 
-[node name="rocks2Image" type="Sprite2D" parent="." unique_id=875429756]
-position = Vector2(957, 311)
-texture = ExtResource("2_qxfds")
+[node name="GameBG" parent="." unique_id=812301365 instance=ExtResource("3_flgk0")]
+scale = Vector2(0.79, 0.79)
 
 [node name="Plane" parent="." unique_id=1116993687 instance=ExtResource("3_qikps")]
 position = Vector2(36, 424)
@@ -27,15 +26,15 @@ metadata/_edit_lock_ = true
 [node name="PipesHolder" type="Node" parent="." unique_id=862401032]
 
 [node name="UpperSpawnMarker" type="Marker2D" parent="." unique_id=392585824]
-position = Vector2(540, 270)
+position = Vector2(540, 240)
 metadata/_edit_lock_ = true
 
 [node name="LowerSpawnMarker" type="Marker2D" parent="." unique_id=241564475]
-position = Vector2(540, 550)
+position = Vector2(540, 570)
 metadata/_edit_lock_ = true
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1688884187]
-wait_time = 1.5
+wait_time = 1.4
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=725500165]
