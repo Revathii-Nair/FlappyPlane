@@ -20,8 +20,8 @@ config/windows_native_icon="res://icon.ico"
 [autoload]
 
 GameManager="*uid://c1qph4eg5prpq"
-SignalHub="*uid://cinxp0v6qqjrj"
 ScoreManager="*uid://dpvjyjwtb2ae8"
+SignalHub="*uid://cinxp0v6qqjrj"
 
 [display]
 
